@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "686273993270",
+    "project_id": "webme-2019",
+    "storage_bucket": "webme-2019.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686273993270:android:2eecfb7b54529bd5515697",
+        "android_client_info": {
+          "package_name": "com.dicky.firebasegetx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686273993270-1usabjp3koau8r4d0hpnr0jggjbvlsn4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLtGsLjvzqsveqASut2iSAp1iXFJkd3Zs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686273993270-1usabjp3koau8r4d0hpnr0jggjbvlsn4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
