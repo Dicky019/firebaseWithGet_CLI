@@ -47,7 +47,7 @@ class LoginView extends GetView<AuthController> {
               TextFormLogin(
                 controller: controller.passwordController,
                 labelText: "Password",
-                hintText: "123456Ab@",
+                hintText: "Ab@123456",
                 validator: controller.validatePassword,
                 prefix: Icon(Icons.lock),
               ),
