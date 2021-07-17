@@ -1,3 +1,4 @@
+import 'package:firebasegetx/app/modules/auth/bindings/reg_binding.dart';
 import 'package:firebasegetx/app/modules/auth/views/dasboard_auth_view.dart';
 import 'package:firebasegetx/app/modules/auth/views/sing_in_view.dart';
 import 'package:get/get.dart';
@@ -28,12 +29,11 @@ class AppPages {
     GetPage(
       name: _Paths.LOGIN,
       page: () => LoginView(),
-      binding: AuthBinding(),
     ),
     GetPage(
       name: _Paths.SIGNIN,
       page: () => SingInView(),
-      binding: AuthBinding(),
+      binding: RegBinding(),
     ),
   ];
 }

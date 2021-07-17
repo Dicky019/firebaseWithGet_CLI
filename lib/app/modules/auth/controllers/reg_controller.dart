@@ -1,24 +1,23 @@
-import 'package:google_sign_in/google_sign_in.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebasegetx/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AuthController extends GetxController {
+class RegController extends GetxController {
   final isLoading = false.obs;
-  late GoogleSignIn googleSignIn;
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
-  final GlobalKey<FormState> keyLogin = GlobalKey<FormState>();
+  late TextEditingController emailController ;
+  late TextEditingController passwordController ;
+  late TextEditingController confirmPasswordController ;
+  final GlobalKey<FormState> keySignIn = GlobalKey<FormState>();
 
   @override
   void onInit() {
-    googleSignIn = GoogleSignIn();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
     super.onInit();
   }
+
 
   String? validateEmail(String? formEmail) {
     if (formEmail == null || formEmail.isEmpty)
@@ -47,9 +46,19 @@ class AuthController extends GetxController {
     return null;
   }
 
+  String? validateConfirmPassword(String? formPassword) {
+    if (formPassword == null || formPassword.isEmpty)
+      return 'Password is required.';
+
+    if (confirmPasswordController.text != passwordController.text)
+      return 'Password does not match';
+
+    return null;
+  }
+
   void singIn() async {
     isLoading.value = true;
-    if (keyLogin.currentState!.validate()) {
+    if (keySignIn.currentState!.validate()) {
       try {
         await FirebaseAuth.instance
             .signInWithEmailAndPassword(
@@ -61,39 +70,15 @@ class AuthController extends GetxController {
           Get.offNamed(Routes.HOME);
         });
       } on FirebaseAuthException catch (error) {
-         defaultError(error.toString());
+       defaultError(error.message!);
         isLoading.value = false;
       }
     }
     isLoading.value = false;
   }
 
-
-  Future signInWithEmail() async {
-    try {
-      final googleUser = await googleSignIn.signIn();
-      print("Loading kah........1");
-      if (googleUser == null) return;
-      final googleAuth = await googleUser.authentication;
-      isLoading.value = true;
-      // print("Loading kah........2");
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-      
-      await FirebaseAuth.instance
-          .signInWithCredential(credential)
-          .then((_) => Get.offNamed(Routes.HOME));
-    } on FirebaseAuthException catch (error) {
-      defaultError(error.toString());
-    } catch (e) {
-      defaultError(e.toString());
-    }
-  }
-
   void defaultError(String error){
-    Get.defaultDialog(title: "Error", middleText: error);
+     Get.defaultDialog(title: "Error",middleText: error);
   }
 
   @override
@@ -105,6 +90,5 @@ class AuthController extends GetxController {
   void onClose() {
     emailController.dispose();
     passwordController.dispose();
-    // googleSignIn.disconnect()
   }
 }

@@ -3,6 +3,7 @@ import 'package:firebasegetx/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -20,7 +21,9 @@ class HomeView extends GetView<HomeController> {
                   try {
                     await FirebaseAuth.instance
                         .signOut()
-                        .then((_) => Get.offNamed(Routes.LOGIN));
+                        .then((_) {
+                          GoogleSignIn().signOut();
+                           Get.offNamed(Routes.AUTH);});
                   } on FirebaseAuthException catch (error) {
                     Get.defaultDialog(title: "${error.message!}");
                   }

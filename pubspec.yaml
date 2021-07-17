@@ -2,26 +2,30 @@ name: firebasegetx
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
-  sdk: '>=2.12.0 <3.0.0'
+environment:
+  sdk: ">=2.12.0 <3.0.0"
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.2
+  flutter_svg: ^0.22.0
   firebase_auth: ^2.0.0
+  google_sign_in: ^5.0.4
+  # flutter_facebook_auth: ^3.5.0
   firebase_core: 1.3.0
   get: 4.1.4
   font_awesome_flutter: ^9.1.0
+
   lottie: 1.1.0
-  flutter: 
+  flutter:
     sdk: flutter
 
-dev_dependencies: 
-  flutter_test: 
+dev_dependencies:
+  flutter_test:
     sdk: flutter
 
-flutter: 
+flutter:
   uses-material-design: true
-  
+
   assets:
-    # - assets/
+    - assets/icons/user.svg
     - assets/lottie/login.json

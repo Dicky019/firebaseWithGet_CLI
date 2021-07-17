@@ -9,7 +9,7 @@ var themeLight = ThemeData(
 
 var themeDark = ThemeData(
   brightness: Brightness.dark,
-  primaryColor: Colors.deepPurple[600],
+  primaryColor: Colors.deepPurple[400],
   primarySwatch: Colors.deepPurple,
   accentColor: Colors.deepPurple[800],
 );

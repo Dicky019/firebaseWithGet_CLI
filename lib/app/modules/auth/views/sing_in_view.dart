@@ -1,3 +1,5 @@
+import 'package:firebasegetx/app/modules/auth/controllers/change_theme_controller.dart';
+import 'package:firebasegetx/app/modules/auth/controllers/reg_controller.dart';
 import 'package:firebasegetx/app/modules/auth/widget/button_login.dart';
 import 'package:firebasegetx/app/modules/auth/widget/text_form_login.dart';
 
@@ -6,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-import '../controllers/auth_controller.dart';
 
-class SingInView extends GetView<AuthController> {
+class SingInView extends GetView<RegController> {
+  final ganti = Get.put(ChengeThemeCustom());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +33,7 @@ class SingInView extends GetView<AuthController> {
                     right: 0,
                     child: IconButton(
                         splashRadius: 20,
-                        onPressed: controller.changeTheme,
+                        onPressed: ganti.changeTheme,
                         icon: Icon(
                           Get.isDarkMode
                               ? Icons.color_lens_outlined
