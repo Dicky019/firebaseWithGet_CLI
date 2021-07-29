@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebasegetx/app/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
-
   final isLoading = false.obs;
 
   final count = 0.obs;
@@ -18,5 +19,14 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+  void logOut() async {
+    try {
+      await FirebaseAuth.instance.signOut().then((_) {
+        GoogleSignIn().signOut();
+        Get.offNamed(Routes.AUTH);
+      });
+    } on FirebaseAuthException catch (error) {
+      Get.defaultDialog(title: "${error.message!}");
+    }
+  }
 }

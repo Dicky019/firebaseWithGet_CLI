@@ -5,10 +5,23 @@ import 'package:get/get.dart';
 
 class RegController extends GetxController {
   final isLoading = false.obs;
+  final obsecureConfirm = false.obs;
+  final obsecurePassword = false.obs;
   late TextEditingController emailController ;
   late TextEditingController passwordController ;
   late TextEditingController confirmPasswordController ;
   final GlobalKey<FormState> keySignIn = GlobalKey<FormState>();
+
+  void eyeConfirm () {
+    // ignore: unnecessary_statements
+    obsecureConfirm.value != true ? obsecureConfirm.value= true : obsecureConfirm.value=false;
+    print(obsecureConfirm.value);
+  }
+  void eyePassword () {
+    // ignore: unnecessary_statements
+    obsecurePassword.value != true ? obsecurePassword.value= true : obsecurePassword.value=false;
+    print(obsecurePassword.value);
+  }
 
   @override
   void onInit() {

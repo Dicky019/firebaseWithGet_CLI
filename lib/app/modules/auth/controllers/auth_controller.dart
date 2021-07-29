@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 class AuthController extends GetxController {
   final isLoading = false.obs;
+  final obsecurePassword = false.obs;
   late GoogleSignIn googleSignIn;
   late TextEditingController emailController;
   late TextEditingController passwordController;
@@ -18,6 +19,12 @@ class AuthController extends GetxController {
     emailController = TextEditingController();
     passwordController = TextEditingController();
     super.onInit();
+  }
+
+  void eyePassword () {
+    
+    obsecurePassword.value != true ? obsecurePassword.value= true : obsecurePassword.value=false;
+    print(obsecurePassword.value);
   }
 
   String? validateEmail(String? formEmail) {
@@ -72,11 +79,9 @@ class AuthController extends GetxController {
   Future signInWithEmail() async {
     try {
       final googleUser = await googleSignIn.signIn();
-      print("Loading kah........1");
       if (googleUser == null) return;
       final googleAuth = await googleUser.authentication;
       isLoading.value = true;
-      // print("Loading kah........2");
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,

@@ -8,13 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-
 class SingInView extends GetView<RegController> {
   final ganti = Get.put(ChengeThemeCustom());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Form(
         key: controller.keySignIn,
         child: Padding(
@@ -54,22 +52,44 @@ class SingInView extends GetView<RegController> {
               SizedBox(
                 height: 8,
               ),
-              TextFormLogin(
-                controller: controller.passwordController,
-                labelText: "Password",
-                hintText: "123456Ab@",
-                validator: controller.validatePassword,
-                prefix: Icon(Icons.lock),
-              ),
+              Obx(() => TextFormLogin(
+                    controller: controller.passwordController,
+                    labelText: "Password",
+                    hintText: "123456Ab@",
+                    validator: controller.validatePassword,
+                    obscure: controller.obsecurePassword.value,
+                    suffix: IconButton(
+                      splashRadius: 20,
+                      icon: Icon(
+                        controller.obsecurePassword.value
+                            ? Icons.remove_red_eye
+                            : Icons.remove_red_eye_outlined,
+                      ),
+                      onPressed: controller.eyePassword,
+                    ),
+                    prefix: Icon(Icons.lock),
+                  )),
               SizedBox(
                 height: 8,
               ),
-              TextFormLogin(
-                controller: controller.confirmPasswordController,
-                labelText: "Confirm Password",
-                validator: controller.validateConfirmPassword,
-                prefix: Icon(
-                  Icons.lock_outline_rounded,
+              Obx(
+                () => TextFormLogin(
+                  controller: controller.confirmPasswordController,
+                  labelText: "Confirm Password",
+                  obscure: controller.obsecureConfirm.value,
+                  validator: controller.validateConfirmPassword,
+                  prefix: Icon(
+                    Icons.lock_outline_rounded,
+                  ),
+                  suffix: IconButton(
+                    splashRadius: 20,
+                    icon: Icon(
+                      controller.obsecureConfirm.value
+                          ? Icons.remove_red_eye
+                          : Icons.remove_red_eye_outlined,
+                    ),
+                    onPressed: controller.eyeConfirm,
+                  ),
                 ),
               ),
               SizedBox(
@@ -93,7 +113,9 @@ class SingInView extends GetView<RegController> {
                         ),
                       ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -102,7 +124,7 @@ class SingInView extends GetView<RegController> {
                       onPressed: () => Get.back(),
                       child: Text("Login"),
                       style: TextButton.styleFrom(
-                        minimumSize:Size(45, 30),
+                        minimumSize: Size(45, 30),
                         padding:
                             EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                       ))
@@ -115,4 +137,3 @@ class SingInView extends GetView<RegController> {
     );
   }
 }
-
